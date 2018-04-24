@@ -14,7 +14,7 @@ int main(int argc, char* argv[]){
       argc = argc-2;
 
       FILE* archivoLeer = fopen(*++argv,"r");
-      FILE* archivoEscribir = fopen(*++argv,"w");
+      FILE* archivoEscribir = fopen(*++argv,"wb");
 
       if(archivoLeer == NULL || archivoEscribir == NULL){
          printf("error abriendo archivos\n");

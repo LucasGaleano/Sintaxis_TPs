@@ -7,4 +7,4 @@ all:
 clean:
 	rm autoIdenti
 	rm io.h
-	tm io.o
+	rm io.o

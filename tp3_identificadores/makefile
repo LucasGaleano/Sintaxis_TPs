@@ -1,6 +1,10 @@
 all:
-	gcc autoIdenti.c -o autoIdenti
+	gcc -c ../funcionesIO/io.c -o io.o
+	cp ../funcionesIO/io.h .
+	gcc autoIdenti.c -o autoIdenti io.o
 
 
 clean:
 	rm autoIdenti
+	rm io.h
+	tm io.o

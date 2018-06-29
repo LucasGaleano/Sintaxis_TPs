@@ -1,15 +1,35 @@
 #include "autoIdenti.h"
-
+#include "io.h"
 
 int main( int args , char * argv[]){
 
-  char* palabra = argv[1];
-	if(!automataIdentificador(palabra)){
-		printf("identificador correcto: %s\n", palabra);
-		return 0;
-	}
-	printf("identificador incorrecto: %s\n", palabra);
-	return 0;
+  char* nombreArchivoLeer = argv[1];
+  char* nombreArchivoEscribir = argv[2];
+  FILE* archivoLeer;
+  FILE* archivoEscribir;
+  char* palabra = NULL;
+
+  if((archivoLeer = fopen(nombreArchivoLeer,"r")) == NULL){
+    perror("error abrir archivo a leer");
+    return 1;
+  }
+
+  if((archivoEscribir = fopen(nombreArchivoEscribir,"w")) == NULL){
+    perror("error abrir archivo a escribir");
+    return 1;
+  }
+
+  palabra = leer_palabra(archivoLeer);
+
+  while(palabra!=NULL){
+    if(automataIdentificador(palabra)==0)
+      escribir_palabra(palabra, archivoEscribir);
+    free(palabra);
+    palabra = leer_palabra(archivoLeer);
+  }
+
+  fclose(archivoLeer);
+  fclose(archivoEscribir);
 }
 
 

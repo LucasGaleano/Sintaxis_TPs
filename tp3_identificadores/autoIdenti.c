@@ -34,8 +34,8 @@ int main( int args , char * argv[]){
 
 
 /*
-*	est  C  D  error
-*		0	 1  2  2
+*     est  C  D  error
+*		0  1  2  2
 *		1  1  1  2
 *		2  2  2  2
 */
@@ -67,3 +67,48 @@ int simbolo(int c){
 
 	return 2;
 }
+
+
+char* leer_palabra(FILE* archivo){
+
+  char c = 0;
+  int i = 0;
+
+  c = fgetc(archivo);
+  while(!caracterValido(c) && c!=EOF)
+      c = fgetc(archivo);
+
+  if(c == EOF)
+    return NULL;
+
+  char* palabra = (char*)malloc(2);
+  palabra[0] = c;
+
+  for(i=1;i<TAM_PALABRA;i++){
+
+    c = fgetc(archivo);
+
+    if(!caracterValido(c) || c == EOF){
+      palabra[i]='\0';
+      return palabra;
+    }
+
+    palabra[i] = c;
+    palabra = (char*)realloc(palabra, strlen(palabra)+1);
+  }
+}
+
+int caracterValido(char c){
+  if(c == ' ' || c == '\n')
+    return 0;
+  return 1;
+}
+
+
+void escribir_palabra(char* palabra, FILE* archivo){
+
+  if(ftell(archivo)!=0) //pregunta si es el principio del archivo
+    fputc(' ',archivo);
+  fputs(palabra,archivo);
+}
+

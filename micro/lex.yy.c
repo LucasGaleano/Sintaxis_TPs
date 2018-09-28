@@ -491,7 +491,7 @@ char *yytext;
 #line 2 "lex.l"
 #include <stdio.h>
 extern int yylval;
-#define debug 0
+int debug = 0;
 #line 496 "lex.yy.c"
 
 #define INITIAL 0

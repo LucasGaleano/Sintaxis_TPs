@@ -1,7 +1,7 @@
 %{
 #include <stdio.h>
 extern int yylval;
-#define debug 0
+int debug = 0;
 %}
 
 espacio (" "|\t|\n)

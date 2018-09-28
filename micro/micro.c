@@ -9,6 +9,7 @@ int main (int argc, char*argv[]){
 
   file = fopen(argv[1],"r");
   if(argc==1){
+    debug = 1;
     while(yylex());
   }
 

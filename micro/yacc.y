@@ -4,22 +4,40 @@ int yyerror(char*);
 int yylex();
 %}
 
-%token NUM SUMA PI PD PyC
+%token SUMA RESTA ID NUM INICIO LEER ESCRIBIR FIN COMA PyC
+%token PARENIZQUIERDO PARENDERECHO ASIGNACION
 %%
-program: statements {printf("FIN\n");}
+programa:INICIO sentencias FIN {printf("FIN\n");}
         ;
-        
-statements: statement
-          | statements statement
+
+sentencias: sentencia
+          | sentencia sentencias
           ;
 
-statement : expression PyC  {printf("Total: %d\n", $$);}
-          | PyC
+sentencia : ID ASIGNACION expresion PyC   {printf("asignar %d a la variable\n",$3);}
+          | LEER  PARENIZQUIERDO identificadores PARENDERECHO PyC {printf("sentencia leer\n");}
+          | ESCRIBIR  PARENIZQUIERDO expresiones PARENDERECHO PyC {printf("sentencia escribir\n");}
           ;
 
-expression : expression SUMA NUM {$$ = $1 + $3; printf("expresion: %d \n", $$);}
-           | NUM                       {$$ = yylval; printf("valor: %d \n", $$);}
-           ;
+identificadores : identificador
+                | identificador COMA identificadores
+                ;
 
+identificador : ID
+              ;
+
+expresiones : expresion   {printf("expresion: %d\n",$1);}
+            | expresion COMA expresiones {printf("expresion: %d\n",$1);}
+            ;
+
+expresion : primaria SUMA expresion  {$$ = $1 + $3; ;}
+          | primaria RESTA expresion {$$ = $1 - $3; ;}
+          | primaria
+          ;
+
+
+primaria : PARENIZQUIERDO expresion PARENDERECHO {$$ = $2;}
+         | ID
+         | NUM
+         ;
 %%
-#include "lex.yy.c"

@@ -1,7 +1,7 @@
 
 
 micro: lex.yy.c yacc.tab.y
-	gcc micro.c -o micro   -ly -ll
+	gcc micro.c -o micro -ly -ll
 
 lex.yy.c:
 	flex lex.l

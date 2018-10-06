@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include"yacc.tab.c"
 #include"lex.yy.c"
+#include"funcionesAuxiliares.c"
 
 
 int main (int argc, char*argv[]){
@@ -20,6 +21,7 @@ int main (int argc, char*argv[]){
 
   yyin = file;
   yyparse();
+  imprimirTabla();
 
   fclose(file);
 }

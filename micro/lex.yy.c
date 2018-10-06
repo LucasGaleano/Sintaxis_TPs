@@ -490,9 +490,10 @@ char *yytext;
 #line 1 "lex.l"
 #line 2 "lex.l"
 #include <stdio.h>
+#include"funcionesAuxiliares.c"
 extern int yylval;
 int debug = 0;
-#line 496 "lex.yy.c"
+#line 497 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -710,10 +711,10 @@ YY_DECL
 		}
 
 	{
-#line 22 "lex.l"
+#line 23 "lex.l"
 
 
-#line 717 "lex.yy.c"
+#line 718 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -773,85 +774,85 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 24 "lex.l"
+#line 25 "lex.l"
 ;//ignorar espacios
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 25 "lex.l"
+#line 26 "lex.l"
 {if(debug)printf("operador: %s\n",yytext);return (SUMA);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 26 "lex.l"
+#line 27 "lex.l"
 {if(debug)printf("operador: %s\n",yytext);return (RESTA);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 27 "lex.l"
+#line 28 "lex.l"
 {if(debug)printf("numero: %s\n",yytext);yylval=atoi(yytext); return (NUM);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 28 "lex.l"
+#line 29 "lex.l"
 {if(debug)printf("reservada: %s\n",yytext);return (INICIO);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 29 "lex.l"
+#line 30 "lex.l"
 {if(debug)printf("reservada: %s\n",yytext);return (LEER);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 30 "lex.l"
+#line 31 "lex.l"
 {if(debug)printf("reservada: %s\n",yytext);return (ESCRIBIR);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 31 "lex.l"
+#line 32 "lex.l"
 {if(debug)printf("reservada: %s\n",yytext);return (FIN);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 32 "lex.l"
-{if(debug)printf("ID: %s\n",yytext);return (ID);}
+#line 33 "lex.l"
+{if(debug)printf("ID: %s\n",yytext);agregar(yytext,10);return (ID);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 33 "lex.l"
+#line 34 "lex.l"
 {if(debug)printf("coma: %s\n",yytext); return (COMA);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 34 "lex.l"
+#line 35 "lex.l"
 {if(debug)printf("PyC: %s\n",yytext); return (PyC);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 35 "lex.l"
+#line 36 "lex.l"
 {if(debug)printf("parenizquierdo: %s\n",yytext); return (PARENIZQUIERDO);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 36 "lex.l"
+#line 37 "lex.l"
 {if(debug)printf("parenDerecho: %s\n",yytext); return (PARENDERECHO);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 37 "lex.l"
+#line 38 "lex.l"
 {if(debug)printf("asignacion: %s\n",yytext); return (ASIGNACION);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 38 "lex.l"
+#line 39 "lex.l"
 {if(debug)printf("deconocido: %s\n",yytext);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 39 "lex.l"
+#line 40 "lex.l"
 ECHO;
 	YY_BREAK
-#line 855 "lex.yy.c"
+#line 856 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1852,7 +1853,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 39 "lex.l"
+#line 40 "lex.l"
 
 
 

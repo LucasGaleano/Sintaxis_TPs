@@ -1,5 +1,6 @@
 %{
 #include <stdio.h>
+#include"funcionesAuxiliares.c"
 extern int yylval;
 int debug = 0;
 %}
@@ -29,7 +30,7 @@ escribir "escribir"
 {leer}  {if(debug)printf("reservada: %s\n",yytext);return (LEER);}
 {escribir}  {if(debug)printf("reservada: %s\n",yytext);return (ESCRIBIR);}
 {fin}  {if(debug)printf("reservada: %s\n",yytext);return (FIN);}
-{identificador}  {if(debug)printf("ID: %s\n",yytext);return (ID);}
+{identificador}  {if(debug)printf("ID: %s\n",yytext);agregar(yytext,10);return (ID);}
 {coma} {if(debug)printf("coma: %s\n",yytext); return (COMA);}
 {PyC} {if(debug)printf("PyC: %s\n",yytext); return (PyC);}
 {parenizquierdo} {if(debug)printf("parenizquierdo: %s\n",yytext); return (PARENIZQUIERDO);}

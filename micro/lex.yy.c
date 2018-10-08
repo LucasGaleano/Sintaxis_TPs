@@ -815,7 +815,7 @@ YY_RULE_SETUP
 case 9:
 YY_RULE_SETUP
 #line 33 "lex.l"
-{if(debug)printf("ID: %s\n",yytext);agregar(yytext,10);return (ID);}
+{if(debug)printf("ID: %s\n",yytext);yylval=yytext[0];agregar(yytext,-1);return (ID);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP

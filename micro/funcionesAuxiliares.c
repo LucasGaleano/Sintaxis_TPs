@@ -46,7 +46,10 @@ void agregar(char* variable, int valor){
 void imprimirTabla(){
   printf("\n\ntabla de simbolos\n");
   for(int i=0;i<tabla_simbolo.cantElementos;i++){
-    printf("%s\n",tabla_simbolo.registro[i].variable);
+    if(tabla_simbolo.registro[i].valor == -1)
+      printf("%s = sin asignar\n",tabla_simbolo.registro[i].variable);
+    else
+      printf("%s = %i\n",tabla_simbolo.registro[i].variable, tabla_simbolo.registro[i].valor);
   }
 }
 
@@ -56,6 +59,20 @@ int existe(char* variable){
       return 1;
   }
   return 0;
+}
+
+void agregarValor(char* variable, int valor){
+  for(int i=0;i<tabla_simbolo.cantElementos;i++){
+    if(strcmp(tabla_simbolo.registro[i].variable,variable)==0)
+      tabla_simbolo.registro[i].valor = valor;
+  }
+}
+
+int buscarValor(char* variable){
+  for(int i=0;i<tabla_simbolo.cantElementos;i++){
+    if(strcmp(tabla_simbolo.registro[i].variable,variable)==0)
+      return tabla_simbolo.registro[i].valor;
+  }
 }
 
 

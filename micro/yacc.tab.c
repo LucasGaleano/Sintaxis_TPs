@@ -1230,7 +1230,7 @@ yyreduce:
 
   case 5:
 #line 24 "yacc.y" /* yacc.c:1646  */
-    {printf("asignar %d a la variable\n",(yyvsp[-1]));}
+    {printf("asignar %d a la variable %c\n", (yyvsp[-1]), (yyvsp[-3])); agregarValor((char*)&(yyvsp[-3]),(yyvsp[-1]));}
 #line 1235 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1276,8 +1276,14 @@ yyreduce:
 #line 1277 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
+  case 17:
+#line 47 "yacc.y" /* yacc.c:1646  */
+    {(yyval) = buscarValor(&(yyvsp[0]));}
+#line 1283 "yacc.tab.c" /* yacc.c:1646  */
+    break;
 
-#line 1281 "yacc.tab.c" /* yacc.c:1646  */
+
+#line 1287 "yacc.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

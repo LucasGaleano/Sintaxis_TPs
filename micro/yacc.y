@@ -21,7 +21,7 @@ sentencias: sentencia
           | sentencia sentencias
           ;
 
-sentencia : ID ASIGNACION expresion PyC   {printf("asignar %d a la variable\n",$3);}
+sentencia : ID ASIGNACION expresion PyC   {printf("asignar %d a la variable %c\n", $3, $1); agregarValor((char*)&$1,$3);}
           | LEER  PARENIZQUIERDO identificadores PARENDERECHO PyC {printf("identificadores leidas\n");}
           | ESCRIBIR  PARENIZQUIERDO expresiones PARENDERECHO PyC {printf("expresiones escritas\n");}
           ;
@@ -44,7 +44,7 @@ expresion : primaria SUMA expresion  {$$ = $1 + $3;}
 
 
 primaria : PARENIZQUIERDO expresion PARENDERECHO {$$ = $2;}
-         | ID
+         | ID  {$$ = buscarValor(&$1);}
          | NUM
          ;
 %%

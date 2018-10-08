@@ -1278,7 +1278,7 @@ yyreduce:
 
   case 17:
 #line 47 "yacc.y" /* yacc.c:1646  */
-    {(yyval) = buscarValor(&(yyvsp[0]));}
+    {(yyval) = buscarValor((char*)&(yyvsp[0]));}
 #line 1283 "yacc.tab.c" /* yacc.c:1646  */
     break;
 

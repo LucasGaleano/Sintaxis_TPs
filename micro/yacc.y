@@ -44,7 +44,7 @@ expresion : primaria SUMA expresion  {$$ = $1 + $3;}
 
 
 primaria : PARENIZQUIERDO expresion PARENDERECHO {$$ = $2;}
-         | ID  {$$ = buscarValor(&$1);}
+         | ID  {$$ = buscarValor((char*)&$1);}
          | NUM
          ;
 %%

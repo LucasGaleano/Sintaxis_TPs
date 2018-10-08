@@ -45,7 +45,7 @@ void agregar(char* variable, int valor){
 
 void imprimirTabla(){
   printf("\n\ntabla de simbolos\n");
-  for(int i=0;i<tabla_simbolo.cantElementos-1;i++){
+  for(int i=0;i<tabla_simbolo.cantElementos;i++){
     printf("%s\n",tabla_simbolo.registro[i].variable);
   }
 }

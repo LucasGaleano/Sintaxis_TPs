@@ -3,7 +3,7 @@
 
 int main(int argc, char * argv[])
 {
-
+  error = 0;
   flagToken = 0;
   strcpy(TS[0].identifi,"inicio");
   TS[0].t =  INICIO;
@@ -13,6 +13,8 @@ int main(int argc, char * argv[])
   TS[2].t =  LEER;
   strcpy(TS[3].identifi,"escribir");
   TS[3].t =  ESCRIBIR;
+  strcpy(TS[4].identifi,"$");
+  TS[4].t =  99;
 
   TOKEN tok;
   char nomArchi[TAMNOM];

@@ -10,5 +10,6 @@ char * ProcesarOp(void);
 void Leer(REG_EXPRESION in);
 void Escribir(REG_EXPRESION out);
 REG_EXPRESION GenInfijo(REG_EXPRESION e1, char * op, REG_EXPRESION e2);
+int atoi(char* num);
 
 #endif

@@ -8,6 +8,7 @@ REG_EXPRESION ProcesarCte(void)
   reg.clase = CONSTANTE;
   strcpy(reg.nombre, buffer);
   sscanf(buffer, "%d", &reg.valor);
+  //printf("                                    %d\n",reg.valor);
   return reg;
 }
 REG_EXPRESION ProcesarId(void)
@@ -52,6 +53,7 @@ REG_EXPRESION GenInfijo(REG_EXPRESION e1, char * op, REG_EXPRESION e2)
   if ( e2.clase == ID) Chequear(Extraer(&e2));
   Chequear(cadTemp);
   Generar(cadOp, Extraer(&e1), Extraer(&e2), cadTemp);
+  printf("sumado: %i\n", (atoi(Extraer(&e1)) + atoi(Extraer(&e2))));
   strcpy(reg.nombre, cadTemp);
   return reg;
 }

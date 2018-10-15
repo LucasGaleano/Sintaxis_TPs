@@ -34,5 +34,6 @@ typedef struct
 char buffer[TAMLEX];
 TOKEN tokenActual;
 int flagToken;
+int error;
 
 #endif //G_H_

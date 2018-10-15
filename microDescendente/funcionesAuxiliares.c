@@ -6,7 +6,7 @@ void Match(TOKEN t)
   TOKEN proxT = ProximoToken();
   if ( !(t == proxT) ) {
     ErrorSintactico();
-    printf("token: %i no conincide con %i\n", t, proxT);
+    printf("token: %s no conincide con proximo token %s\n", buscarPorNumero(t), buscarPorNumero(proxT));
   }
   flagToken = 0;
 }
@@ -15,7 +15,7 @@ TOKEN ProximoToken()
   if ( !flagToken )
   {
     tokenActual = scanner();
-    printf("proximo token: %i\n",tokenActual);
+    printf("proximo token: %s\n",buscarPorNumero(tokenActual));
     if ( tokenActual == ERRORLEXICO ) ErrorLexico();
     flagToken = 1;
     if ( tokenActual == ID )
@@ -27,10 +27,12 @@ TOKEN ProximoToken()
 }
 void ErrorLexico()
 {
+  error = 1;
   printf("Error Lexico\n");
 }
 void ErrorSintactico()
 {
+  error = 1;
   printf("Error Sintactico\n");
 }
 void Generar(char * co, char * a, char * b, char * c)
@@ -43,6 +45,13 @@ char * Extraer(REG_EXPRESION * preg)
   /* Retorna la cadena del registro semantico */
   return preg->nombre;
 }
+
+int ExtraerValor(REG_EXPRESION *preg)
+{
+  /* Retorna la cadena del registro semantico */
+  return preg->valor;
+}
+
 int Buscar(char * id, RegTS * TS, TOKEN * t)
 {
   /* Determina si un identificador esta en la TS */
@@ -58,13 +67,37 @@ int Buscar(char * id, RegTS * TS, TOKEN * t)
   }
   return 0;
 }
+
+char* buscarPorNumero(TOKEN token){
+  switch(token){
+    case 0: return "inicio";
+    case 1: return "fin";
+    case 2: return "leer";
+    case 3: return "escribir";
+    case 4: return "id";
+    case 5: return "numero";
+    case 6: return "(";
+    case 7: return ")";
+    case 8: return ";";
+    case 9: return ",";
+    case 10: return ":=";
+    case 11: return "suma";
+    case 12: return "resta";
+    case 13: return "fdt";
+    case 14: return "error";
+
+  }
+}
+
 void Colocar(char * id, RegTS * TS)
 {
   /* Agrega un identificador a la TS */
   int i = 4;
-  while ( strcmp("$", TS[i].identifi) ) i++;
+  while ( strcmp("$", TS[i].identifi) )
+    i++;
   if ( i < 999 )
   {
+
     strcpy(TS[i].identifi, id );
     TS[i].t = ID;
     strcpy(TS[++i].identifi, "$" );
@@ -88,10 +121,17 @@ void Comenzar(void)
 void Terminar(void)
 {
   /* Genera la instruccion para terminar la ejecucion del programa */
+
   Generar("Detiene", "", "", "");
+  if(error)
+     printf("\n[-] error en la compilacion\n");
+  else
+      printf("\n[+] programa compilado con exito\n");
+
 }
 void Asignar(REG_EXPRESION izq, REG_EXPRESION der)
 {
   /* Genera la instruccion para la asignacion */
+
   Generar("Almacena", Extraer(&der), izq.nombre, "");
 }
